@@ -1,0 +1,22 @@
+.pulse-sdk {
+    .login-component {
+        
+    }
+
+    .pulse-sdk-search-component {
+        ul.pulse-sdk-autocomplete-dropdown {
+            list-style: none;
+            margin: 0;
+            padding: 4px 8px;
+
+            border: 1px solid gray;
+            border-radius: 8px;
+
+            li {
+                :hover {
+                    background-color: blue;
+                }
+            }
+        }
+    }
+}
