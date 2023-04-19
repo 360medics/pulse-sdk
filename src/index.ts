@@ -1,5 +1,5 @@
-import {render} from './dom/render'
-import { extendObject } from './utils/extendObject'
+import {dom} from './widget/dom'
+import {extendObject} from './utils/extendObject'
 
 const supportedApi = ['init']
 
@@ -43,7 +43,7 @@ function apiHandler(method: any, param: string) {
     switch (method) {
         // add API implementation here
         case 'render':
-            render(param)
+            dom(param)
             break
         default:
             console.warn(`No handler defined for ${method}`)
