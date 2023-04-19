@@ -4,8 +4,8 @@ export function LoginView() {
     return {
         $template: '#login-page',
         error: '',
-        username: 'romain@360medics.com',
-        password: 'frenchfrog',
+        username: '',
+        password: '',
         inc() {
             this.count++
         },

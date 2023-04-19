@@ -13,13 +13,17 @@ class ApiService {
         this.clientKey = localStorage.getItem('_client_key') as string
         this.userApiKey = localStorage.getItem('_api_key') as string
     }
+
+    isAuthenticated(): boolean {
+        return this.userApiKey && this.userApiKey !== ''
+    }
     
-    setUserApiKey(apiKey: string) {
+    setUserApiKey(apiKey: string): void {
         this.userApiKey = apiKey
         localStorage.setItem('_api_key', apiKey)
     }
 
-    setClientKey(clientKey: string) {
+    setClientKey(clientKey: string): void {
         this.clientKey = clientKey
         localStorage.setItem('_client_key', clientKey)
     }
