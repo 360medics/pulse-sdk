@@ -10,19 +10,22 @@ class ApiService {
     userApiKey: string
 
     constructor() {
-
+        this.clientKey = localStorage.getItem('_client_key') as string
+        this.userApiKey = localStorage.getItem('_api_key') as string
     }
     
     setUserApiKey(apiKey: string) {
         this.userApiKey = apiKey
+        localStorage.setItem('_api_key', apiKey)
     }
 
-    setClientKey(apiKey: string) {
-        this.clientKey = apiKey
+    setClientKey(clientKey: string) {
+        this.clientKey = clientKey
+        localStorage.setItem('_client_key', clientKey)
     }
     
     async autocomplete(term: string): Promise<AutocompleteResponse> {
-        const url = `https://prod-api-rd360.360medics.com/v3/autocomplete/all?q=${term}&lang=fr&country=FR&medics_area=ansm`
+        const url = `https://guepard-rd360.360medics.com/v3/autocompletevb/all?q=${term}&lang=fr&country=FR&medics_area=ansm`
         
         const body: any = {
             id: 5,

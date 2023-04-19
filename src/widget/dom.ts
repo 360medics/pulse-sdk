@@ -25,12 +25,12 @@ export const dom = (selector: string) => {
         </div>`
 
     const store = reactive({
-        page: 'login',
+        page: 'search',
         nav(page: string) {
             this.page = page
         }
     })
-    
+
     const app = createApp({
         store,
         LoginView, SearchView,
