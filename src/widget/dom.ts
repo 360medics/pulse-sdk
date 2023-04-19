@@ -8,7 +8,7 @@ import '../sass/common.scss'
  * It inserts the petite-vue app into the dom and imports all the views (see widget/views folder)
  */
 export const dom = (selector: string) => {
-    // make sur the selector div does exist
+    // make sur the selector div exists
     const container =  document.getElementById(selector)
     if (!container) {
         console.log(`Selector "${container}" is not a valid element or was not found in the DOM.`)
@@ -26,11 +26,11 @@ export const dom = (selector: string) => {
 
     const store = reactive({
         page: 'login',
-        nav(pageId: string) {
-            this.page = pageId
+        nav(page: string) {
+            this.page = page
         }
     })
-
+    
     const app = createApp({
         store,
         LoginView, SearchView,

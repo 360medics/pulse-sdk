@@ -1,5 +1,6 @@
 import {dom} from './widget/dom'
 import {extendObject} from './utils/extendObject'
+import {Api} from './Api'
 
 const supportedApi = ['init']
 
@@ -37,6 +38,8 @@ function bootstrap(window: Window): void|any {
     globalObject = apiHandler
     globalObject.configuration = configuration
     console.log('Configuration:', globalObject.configuration)
+
+    Api.setClientKey(configuration.apiKey)
 }
 
 function apiHandler(method: any, param: string) {

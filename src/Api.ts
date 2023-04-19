@@ -61,8 +61,22 @@ class ApiService {
                     reject(e)
                 })
         })
-        
+    }
 
+    async auth(username: string, password: string) {
+        const headers = {
+            'Authorization': `Token ${this.clientKey}`
+        }
+
+        return new Promise((resolve, reject) => {
+            axios.post('https://360medics.com/rest/login', { username, password }, { headers })
+                .then((response: any) => {
+                    this.setUserApiKey(response.data.api_key)
+                    resolve(response.data)
+                }).catch((e: any) => {
+                    reject(e)
+                })
+        })
     }
 }
 
