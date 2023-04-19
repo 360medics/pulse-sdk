@@ -3,6 +3,7 @@ const path = require('path')
 module.exports = {
     entry: './src/index.ts',
     mode: 'production',
+    performance: { hints: false },
     devServer: {
         port: 5173,
         static: [
@@ -10,7 +11,7 @@ module.exports = {
                 directory: path.join(__dirname, 'dist'),
             },
             {
-                directory: path.join(__dirname, 'public'),
+                directory: path.join(__dirname, 'demo'),
             },
         ],
     },
