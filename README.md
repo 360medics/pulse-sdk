@@ -1,6 +1,6 @@
 # pulse-sdk
 
-On going POC for a PulseLife search SDK
+Ongoing POC for a PulseLife search SDK
 
 ## Integration
 
