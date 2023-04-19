@@ -1,30 +1,53 @@
-import {Api as api} from './Api'
-import {ready} from './dom/ready'
-import {createLoginComponent} from './dom/loginComponent'
-import {createSearchComponent, initSearchComponent} from './dom/searchComponent'
-import './sass/common.scss'
+import {render} from './dom/render'
+import { extendObject } from './utils/extendObject'
 
-function init(selector: string, options: { clientKey: string }): void {
-    ready(() => {
-        // create base elements
-        const element = document.getElementById(selector)
-        element.setAttribute('class', 'pulse-sdk')
+const supportedApi = ['init']
 
-        const loginComponent = createLoginComponent()
-        const searchComponent = createSearchComponent()
-        
-        element.appendChild(searchComponent)
-
-        // init all js bindings
-        initSearchComponent()
-    })
+type GlobalSDKObject = {
+    q: string[][]
 }
 
-const dom = {
-    doStuff: (e: MouseEvent) => {
-        if (e) { e.preventDefault() }
-        console.log('doStuff', e)
+type DefaultConfiguration = {
+    apiKey?: string
+    [x: string]: string
+}
+
+// function init(selector: string, options: { clientKey: string }): void {
+function bootstrap(window: Window): void|any {
+    let configuration: DefaultConfiguration = {
+        apiKey: null
+    }
+
+    // get configuration options
+    let globalObject: GlobalSDKObject|any = window[window['Pulse']] as unknown as GlobalSDKObject
+    const queue: string[][] = globalObject.q
+
+    // read (loop through) arguments passed to the queue in index.html with pusle('arg1', 'arg2', ...)
+    if (queue) {
+        for (let i in queue) {
+            if (queue[i][0].toLowerCase() === 'init') {
+                // note: converts all arguments values to strings
+                configuration = extendObject(configuration, { apiKey: `${queue[i][1]}` })
+            } else {
+                apiHandler(queue[i][0], queue[i][1])
+            }
+        }
+    }
+
+    globalObject = apiHandler
+    globalObject.configuration = configuration
+    console.log('Configuration:', globalObject.configuration)
+}
+
+function apiHandler(method: any, param: string) {
+    switch (method) {
+        // add API implementation here
+        case 'render':
+            render(param)
+            break
+        default:
+            console.warn(`No handler defined for ${method}`)
     }
 }
 
-export { api, init, dom }
+bootstrap(window)

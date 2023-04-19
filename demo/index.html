@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>My Website</title>
+        <link rel="stylesheet" href="./style.css">
+        <link rel="icon" href="./favicon.ico" type="image/x-icon">
+        <!-- <script src="bundle.js"></script> -->
+        <script>
+            // self evaluating function to restrict scope and avoid conflicts
+            (function (window, document, scriptAddress, globalName) {
+                window['Pulse'] = globalName
+                
+                window[globalName] = window[globalName] || function () {
+                    // pushes arguments that were passed to delegate into queue
+                    // so they can be accessed later from the main script
+                    (window[globalName].q = window[globalName].q || []).push(arguments)
+                }
+
+                // dynamically create a script tag element with async execution,
+                const scriptElement = document.createElement('script')
+                const otherScriptElement = document.getElementsByTagName('script')[0]
+                scriptElement.async = true
+                scriptElement.src = scriptAddress
+
+                // inject the script tag before first script tag found within document
+                otherScriptElement.parentNode.insertBefore(scriptElement, otherScriptElement)
+            })(window, document, '//localhost:5173/bundle.js', 'pulse')
+            
+            pulse('init', 'xxxx')
+            pulse('render', 'my-widget')
+        </script>
+    </head>
+    <body>
+        <h1>SDK</h1>
+        <div id="my-widget" v-scope></div>
+        <!--<script>
+            Pulse.init('insert-here')
+            Pulse.api.setClientKey('myclientkey')
+            Pulse.api.setUser('userapikeyafterloginsetbythesdk')
+        </script>-->
+    </body>
+</html>

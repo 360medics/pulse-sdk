@@ -13,7 +13,7 @@ class ApiService {
 
     }
     
-    setUser(apiKey: string) {
+    setUserApiKey(apiKey: string) {
         this.userApiKey = apiKey
     }
 
@@ -46,6 +46,23 @@ class ApiService {
                     reject(e)
                 })
         })
+    }
+
+    async tryAuth() {
+        const username = 'romain'
+        const password = 'secretstuff'
+        const credentials = { username, password }
+        
+        return new Promise((resolve, reject) => {
+            axios.post('http://localhost:4003/auth', credentials)
+                .then((response: any) => {
+                    resolve(response.data)
+                }).catch((e: any) => {
+                    reject(e)
+                })
+        })
+        
+
     }
 }
 
