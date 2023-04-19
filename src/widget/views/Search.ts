@@ -1,5 +1,5 @@
 import {Api} from '../../Api'
-import logo from '../../images/logo-pulse'
+import logo from '../../images/logo'
 
 export function SearchView() {
     return {
