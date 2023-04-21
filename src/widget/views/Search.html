@@ -1,0 +1,14 @@
+<template id="search-page">
+    <form @click="$event.stopPropagation()" id="pulse-sdk-search-form" class="search-form" @vue:mounted="mounted">
+        <div class="search-input">
+            <img class="pulse-sdk-logo" src="https://med-cdn.ams3.digitaloceanspaces.com/assets/pulse/sdk/pulse-logo.png" alt="such a pup!" width="100%">
+            <input v-model="term" type="text" placeholder="Search..." @keyup="search">
+        </div>
+        <ul class="autocomplete" v-if="dropdownvisible">
+            <li v-if="results.length === 0"><a @click.prevent="()=>{}" href="">Aucun résultat à suggérer</a></li>
+            <li v-for="item in results">
+                <a target="_blank" :href="'https://app.pulselife.dev.360medics.tech/results?query='+item.label+'#all'">{{item.label}}</a>
+            </li>
+        </ul>
+    </form>
+</template>

@@ -1,0 +1,92 @@
+.pulse-sdk {
+    .pulse-sdk-login-popup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        min-width: 320px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 360px;
+        padding: 32px 32px 16px 32px;
+        flex-grow: 0;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        
+        h2.pulse-sdk-login-title {
+            color: #333;
+            margin: 0px;
+            margin-bottom: 16px;
+        }
+
+        div.pulse-sdk-login-help-links {
+            margin-bottom: 8px;
+            color: #a3b5d6;
+            
+            a {
+                color: inherit;
+                text-decoration: none;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+        
+        form.pulse-sdk-login-form {
+            display: flex;
+            flex-grow: 1;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            box-sizing: border-box;
+            font-family: inherit;
+            font-size: inherit;
+            z-index: 2;
+
+            .control {
+                display: flex;
+                flex-grow: 1;
+                width: 100%;
+                margin-bottom: 16px;
+            }
+
+            input[type="text"], input[type="password"], button[type="submit"] {
+                display: flex;
+                flex-grow: 1;
+                width: 100%;
+                box-sizing: border-box;
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            input[type="text"], input[type="password"] {
+                width: 100%;
+                border: 1px solid #ccd5e5;
+                background-color: white;
+                padding: 0.7125rem;
+                border-radius: 8px;
+            }
+
+            button[type="submit"] {
+                cursor: pointer;
+                display: flex;
+                flex-grow: 1;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+                background-color: #f30e40;
+                border-radius: 0.5rem;
+                padding: 0.7125rem;
+                border: 0px;
+                font-weight: bold;
+            }
+        }
+    }
+}

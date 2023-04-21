@@ -1,0 +1,90 @@
+.pulse-sdk {
+    form.search-form, form.fake-search-form {
+        display: flex;
+        position: relative;
+        font-size: inherit;
+
+        .search-input {
+            display: flex;
+            width: 100%;
+            position: relative;
+
+            .pulse-sdk-logo {
+                position: absolute;
+                width: 24px;
+                height: 24px;
+                top: 6px;
+                left: 6px;
+                border-radius: 1.625rem;
+            }
+
+            input[type="text"] {
+                color: black;
+                font-size: inherit;
+                font-family: inherit;
+                width: 100%;
+                box-sizing: border-box;
+                height: 36px;
+                padding: 8px 8px 8px 32px;
+                border-radius: 1.625rem;
+                border: 1px solid #ffeaea;
+                background-color: #ffeaea;
+                transition: border-color ease 0.15s;
+
+                &:focus {
+                    outline: none;
+                    border-color: #ca0f37;
+                }
+            }
+
+            &.disabled {
+                input[type="text"] {
+                    border: 1px solid #f0f0f0;
+                    background-color: #f0f0f0;
+                }
+            }
+        }
+    }
+    
+    ul.autocomplete {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        list-style-type: none;
+        padding: 0px;
+        margin: 0px;
+        top: 38px;
+        left: 12px;
+        right: 12px;
+        z-index: 1;
+
+        background-color: #fff;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        border-radius: 4px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        max-height: 318px;
+        overflow-y: hidden;
+        font-size: 0.9em;
+
+        li {
+            display: flex;
+            flex-direction: row;
+
+            a {
+                display: flex;
+                width: 100%;
+                line-height: 1.25em;
+                color: #333;
+                padding: 6px 16px;
+                text-decoration: none;
+                transition: background-color ease 0.13s, color ease 0.13s; 
+
+                &:hover {
+                    color: white;
+                    background-color: #f30e40;
+                }
+            }
+        }
+    }
+}

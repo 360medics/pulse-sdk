@@ -14,7 +14,6 @@ class ApiService {
         this.clientKey = localStorage.getItem('_client_key') as string
         this.userApiKey = localStorage.getItem('_api_key') as string
         this.userPayload = localStorage.getItem('_usr_data') !== null ? JSON.parse(localStorage.getItem('_usr_data')) : {} as string
-        console.log(this.userPayload)
     }
 
     isAuthenticated(): boolean {
@@ -37,7 +36,7 @@ class ApiService {
     }
     
     async autocomplete(term: string): Promise<AutocompleteResponse> {
-        const url = `https://prod-api-rd360.360medics.com/v3/autocompletevb/all?q=${term}&lang=fr&country=FR&medics_area=ansm`
+        const url = `${process.env.PULSE_SEARCH_API_URL}/v3/autocompletevb/all?q=${term}&lang=fr&country=FR&medics_area=ansm`
         
         const headers = {
             'Authorization': `Token ${this.clientKey}`,
@@ -60,7 +59,7 @@ class ApiService {
         }
 
         return new Promise((resolve, reject) => {
-            axios.post('https://360medics.com/rest/login', { username, password }, { headers })
+            axios.post(`${process.env.PULSE_REST_API_URL}/rest/login`, { username, password }, { headers })
                 .then((response: any) => {
                     this.setUserApiKey(response.data.api_key)
                     this.setUserPayload({

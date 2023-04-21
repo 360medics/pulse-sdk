@@ -37,7 +37,6 @@ function bootstrap(window: Window): void|any {
 
     globalObject = apiHandler
     globalObject.configuration = configuration
-    console.log('Configuration:', globalObject.configuration)
 
     Api.setClientKey(configuration.apiKey)
 }

@@ -1,31 +1,44 @@
 import {Api} from '../../Api'
 
+/**
+ * Template location: ./Login.html
+ * $template "#login-page" must correpond in html template (<template id="login-page">)
+ * @returns void
+ */
 export function LoginView() {
     return {
         $template: '#login-page',
         error: '',
         username: '',
         password: '',
-        inc() {
-            this.count++
+        modalVisible: false,
+        loading: false,
+        mounted() {
+            const modal = document.getElementById('pulse-sdk-login-popup')
+            
+            document.addEventListener('click', (event: any) => {
+                if (modal && !modal.contains(event.target)) {
+                    this.modalVisible = false
+                }
+            }, { once: true })
         },
         async auth() {
+            this.loading = true
+
             try {
                 await Api.auth(this.username, this.password)
+                this.loading = false
                 this.store.nav('search')
             } catch (e) {
-                this.error = e.toString()
+                this.error = 'Identifiant invalides'
+                this.loading = false
             }
-        }
+        },
+        openModal() {
+            this.modalVisible = true
+        },
+        closeModal() {
+            this.modalVisible = false
+        },
     }
 }
-
-export const LoginViewtemplate = `
-    <template id="login-page">
-        <form @submit.prevent="auth">
-            <div class="control"><input v-model="username" type="text" placeholder="Email..."></div>
-            <div class="control"><input v-model="password" type="password" placeholder="Password..."></div>
-            <div class="control"><button type="submit">Login</button></div>
-        </form>
-        <div v-if="error" class="error">{{error}}</div>
-    </template>`

@@ -1,3 +1,10 @@
 .*DS_Store
+.env
+.env.dev
+.env.prod
 dist
 node_modules
+demo/demo-dist/*
+!demo/demo-dist/index.dist.html
+scripts/*
+!scripts/update-demo.dist.sh

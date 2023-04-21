@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Pulse SDK Demo</title>
+        <link rel="stylesheet" href="./style.css">
+        <link rel="icon" href="./favicon.ico" type="image/x-icon">
+        <script>
+            // self evaluating function to restrict scope and avoid conflicts
+            (function (window, document, scriptAddress, globalName) {
+                window['Pulse'] = globalName
+                
+                window[globalName] = window[globalName] || function () {
+                    // pushes arguments that were passed to delegate into queue
+                    // so they can be accessed later from the main script
+                    (window[globalName].q = window[globalName].q || []).push(arguments)
+                }
+
+                // dynamically create a script tag element with async execution,
+                const scriptElement = document.createElement('script')
+                const otherScriptElement = document.getElementsByTagName('script')[0]
+                scriptElement.async = true
+                scriptElement.src = scriptAddress
+
+                // inject the script tag before first script tag found within document
+                otherScriptElement.parentNode.insertBefore(scriptElement, otherScriptElement)
+            })(window, document, '//localhost:5173/bundle.js', 'pulse')
+            
+            pulse('init', '<%= htmlWebpackPlugin.options.client_id %>')
+            pulse('render', 'my-widget')
+        </script>
+
+
+        <style type="text/css">
+            .etab {
+                margin-bottom: 16px;
+            }
+
+            p {
+                line-height: 1.3em;
+            }
+
+            .nouille {
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .dossier {
+                display: flex;
+                flex-direction: row;
+            }
+
+            .leftbar {
+                display: flex;
+                flex-direction: column;
+                width: 380px;
+                padding: 16px;
+                color: #f4f4f4;
+                background-color: #6e9dd1;
+            }
+
+            .content {
+                padding: 16px;
+            }
+
+            .content .notes .note {
+                font-size: 0.9em;
+                margin-bottom: 24px;
+            }
+
+            .note > p:last-child {
+                margin-top: 4px;
+            }
+
+            .date {
+                color: gray;
+                padding-bottom: 0px;
+                margin-bottom: 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="nouille">
+            <h1>Dossier Patient Informatisé</h1>
+            <div class="etab">Hôpital Duboin-la-Charité, 75076 Paris Les Mouilles</div>
+
+            <div class="dossier">
+                <div class="leftbar">
+                    <p><b>MENU PRINCIPAL</b></p>
+                    <ul>
+                        <li>Accueil</li>
+                        <li>Agenda du chef</li>
+                        <li>Inventaire des lits (propres)</li>
+                        <li>Inventaire des lits (sales)</li>
+                        <li>Admissions en cours</li>
+                        <li>Déconnexion</li>
+                    </ul>
+                    <div id="my-widget" v-scope></div>
+                </div>
+                <div class="content">
+                    <div class="notes">
+                        <div class="note">
+                            <p class="date"><i>Le 9 avr. 2023 - 08h30</i></p>
+                            <p>Madame Duboing m'informe qu'elle confond les étiquettes sur les bouteilles. Sans doute sa cataracte qui empire. Analyses en cours.</p>
+                        </div>
+                        
+                        <div class="note">
+                            <p class="date"><i>Le 11 avr. 2023 - 15h00</i></p>
+                            <p>Les analyses indiquent que ce n'est pas la cataracte. Autre info, l'aide soignante m'informe qu'une bouteille de javel à disparu dans le service. Vol, méfaisance du stagiaire ?</p>
+                        </div>
+                        <div class="note">
+                            <p class="date"><i>Le 12 avr. 2023 - 19h45</i></p>
+                            <p>La patiente a du mal à respirer et n'a bizarrement pas touché à son smoothie... mais à mon avis ça va.</p>
+                        </div>
+
+                        <div class="note">
+                            <p class="date"><i>Le 19 avr. 2023 - 07h54</i></p>
+                            <p>D'après le Dr. Calembourd, le patient est décédé hier d'une embolie aigue de la trachée. Plus grand chose à faire aujourd'hui.</p>
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+</html>

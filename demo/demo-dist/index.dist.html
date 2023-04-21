@@ -7,34 +7,20 @@
         <title>My Website</title>
         <link rel="stylesheet" href="./style.css">
         <link rel="icon" href="./favicon.ico" type="image/x-icon">
-        <!-- <script src="bundle.js"></script> -->
         <script>
-            // self evaluating function to restrict scope and avoid conflicts
-            (function (window, document, scriptAddress, globalName) {
-                window['Pulse'] = globalName
-                
-                window[globalName] = window[globalName] || function () {
-                    // pushes arguments that were passed to delegate into queue
-                    // so they can be accessed later from the main script
-                    (window[globalName].q = window[globalName].q || []).push(arguments)
-                }
+            !function(e,s,t,n){e.Pulse=n,e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)};
+            let c=s.createElement("script"),r=s.getElementsByTagName("script")[0];
+            c.async=!0,c.src=t,r.parentNode.insertBefore(c,r)}(window,document,"https://sdk.360medics.com/bundle.js","pulse");
 
-                // dynamically create a script tag element with async execution,
-                const scriptElement = document.createElement('script')
-                const otherScriptElement = document.getElementsByTagName('script')[0]
-                scriptElement.async = true
-                scriptElement.src = scriptAddress
-
-                // inject the script tag before first script tag found within document
-                otherScriptElement.parentNode.insertBefore(scriptElement, otherScriptElement)
-            })(window, document, '//localhost:5173/bundle.js', 'pulse')
-            
-            pulse('init', '4SJxKlCP9ucc6pzVXVv9zurURQ96Um7d')
+            pulse('init', 'DIST_CLIENT_KEY')
             pulse('render', 'my-widget')
         </script>
 
 
         <style type="text/css">
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+            }
             .etab {
                 margin-bottom: 16px;
             }
@@ -47,7 +33,7 @@
                 display: flex;
                 flex-direction: column;
             }
-            
+
             .dossier {
                 display: flex;
                 flex-direction: row;
@@ -106,10 +92,10 @@
                             <p class="date"><i>Le 9 avr. 2023 - 08h30</i></p>
                             <p>Madame Duboing m'informe qu'elle confond les étiquettes sur les bouteilles. Sans doute sa cataracte qui empire. Analyses en cours.</p>
                         </div>
-                        
+
                         <div class="note">
                             <p class="date"><i>Le 11 avr. 2023 - 15h00</i></p>
-                            <p>Les analyses indiquent que ce n'est pas la cataracte. Autre info, l'aide soignante m'informe qu'une bouteille de javel à disparu dans le service. Vol, méfaisance du stagiaire ?</p>
+                            <p>Les analyses indiquent que ce n'est pas la cataracte. Autre info, l'aide soignante m'informe qu'une bouteille de javel à disparue dans le service. Vol, méfaisance du stagiaire ?</p>
                         </div>
                         <div class="note">
                             <p class="date"><i>Le 12 avr. 2023 - 19h45</i></p>
@@ -125,6 +111,6 @@
             </div>
         </div>
 
-        
+
     </body>
 </html>

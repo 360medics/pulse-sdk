@@ -1,0 +1,35 @@
+<template id="login-page">
+    <form class="search-form">
+        <div class="search-input disabled" @click="$event.stopPropagation()">
+            <img class="pulse-sdk-logo" src="https://med-cdn.ams3.digitaloceanspaces.com/assets/pulse/sdk/pulse-logo-gray.png" alt="such a pup!" width="100%">
+            <input type="text" placeholder="Vous n'êtes pas connecté. Cliquez ici." @click="openModal" style="cursor:pointer">
+        </div>
+    </form>
+    
+    <div id="pulse-sdk-login-popup" class="pulse-sdk-login-popup"
+        v-if="modalVisible"
+        @vue:mounted="mounted"
+        @click="$event.stopPropagation()
+    ">
+        <h2 class="pulse-sdk-login-title">Me connecter à PulseLife</h2>
+        <form @submit.prevent="auth" class="pulse-sdk-login-form">
+            <div class="control"><input v-model="username" type="text" placeholder="Email..."></div>
+            <div class="control"><input v-model="password" type="password" placeholder="Password..."></div>
+            <div class="control">
+                <button type="submit">
+                    <span v-if="!loading">Me connecter</span>
+                    <span v-else>Chargement</span>
+                </button>
+            </div>
+        </form>
+        <div class="pulse-sdk-login-help-links">
+            <a href="https://app.pulselife.com/register" target="_blank">Créer un compte</a>&nbsp;&middot;&nbsp;
+            <a href="https://app.pulselife.com/forgot" target="_blank">Mot de passe oublié</a>
+        </div>
+        <div class="pulse-sdk-login-help-links">
+            <a href="" target="_blank" @click.prevent="closeModal">Fermer</a>
+        </div>
+        <div v-if="error" class="error">{{error}}</div>
+    </div>
+
+</template>
