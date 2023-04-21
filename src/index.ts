@@ -2,7 +2,7 @@ import {dom} from './widget/dom'
 import {extendObject} from './utils/extendObject'
 import {Api} from './Api'
 
-const supportedApi = ['init']
+const supportedApi = ['init', 'render']
 
 type GlobalSDKObject = {
     q: string[][]

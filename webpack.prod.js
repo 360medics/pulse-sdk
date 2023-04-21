@@ -11,7 +11,7 @@ module.exports = merge(common, {
         new HtmlWebpackPlugin({
             inject: false,
             template: './demo/index.ejs',
-            client_id: 'DIST_CLIENT_KEY' // to be replaced on demo file remote push
+            client_id: null
         }),
         new Dotenv({ path: './.env' })
     ]
