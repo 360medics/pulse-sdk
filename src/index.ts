@@ -23,7 +23,7 @@ function bootstrap(window: Window): void|any {
     let globalObject: GlobalSDKObject|any = window[window['Pulse']] as unknown as GlobalSDKObject
     const queue: string[][] = globalObject.q
 
-    // read (loop through) arguments passed to the queue in index.html with pusle('arg1', 'arg2', ...)
+    // read (loop through) arguments passed to the queue in index.html with pulse('arg1', 'arg2', ...)
     if (queue) {
         for (let i in queue) {
             if (queue[i][0].toLowerCase() === 'init') {
