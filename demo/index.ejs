@@ -27,7 +27,7 @@
 
                 // inject the script tag before first script tag found within document
                 otherScriptElement.parentNode.insertBefore(scriptElement, otherScriptElement)
-            })(window, document, '//localhost:5173/bundle.js', 'pulse')
+            })(window, document, '//localhost:5173/bundle-v0.1.js', 'pulse')
             
             pulse('init', '<%= htmlWebpackPlugin.options.client_id %>')
             pulse('render', 'my-widget')

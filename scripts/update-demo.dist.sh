@@ -5,8 +5,7 @@ DIST_CLIENT_KEY="PULSE_CLIENT_KEY"
 rm -rf ./dist/*
 npm run build
 
-cp ./dist/bundle.js ./demo/demo-dist/bundle.js
-cp ./demo/favicon.ico ./demo/demo-dist/favicon.ico
+cp ./dist/bundle-v0.1.js ./demo/demo-dist/bundle-v0.1.js
 cp ./demo/demo-dist/index.dist.html ./demo/demo-dist/index.html
 
 # add client key
