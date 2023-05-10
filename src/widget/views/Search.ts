@@ -16,6 +16,9 @@ export function SearchView() {
                 this.dropdownvisible = false
             }, { once: true })
         },
+        async submit() {
+            window.open(this.otpRedirectUrl(this.term))
+        },
         async search() {
             try {
                 const response = await Api.autocomplete(this.term) as any
@@ -30,7 +33,7 @@ export function SearchView() {
         otpRedirectClick() {
             Api.setOtpState('used')
         },
-        otpRedirectUrl(label: string) {
+        otpRedirectUrl(term: string) {
             const otpState = Api.getOtpState()
             const otpToken = Api.getOtpToken()
 
@@ -39,9 +42,9 @@ export function SearchView() {
             let url: string
 
             if (otpState === 'used') {
-                url = `${process.env.PULSE_FRONT_URL}/results?query=${label}#all`
+                url = `${process.env.PULSE_FRONT_URL}/results?query=${term}#all`
             } else {
-                url = `${process.env.PULSE_FRONT_URL}/otp/login?otpToken=${otpToken}&redirect=${encodeURIComponent('https://app.pulselife.dev.360medics.tech/results?query='+label+'#all')}`
+                url = `${process.env.PULSE_FRONT_URL}/otp/login?otpToken=${otpToken}&redirect=${encodeURIComponent('https://app.pulselife.dev.360medics.tech/results?query='+term+'#all')}`
             }
 
             return url
