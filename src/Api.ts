@@ -8,11 +8,15 @@ type AutocompleteResponse = {
 class ApiService {
     clientKey: string
     userApiKey: string
+    otpToken: string
+    otpState: string
     userPayload: any = {}
 
     constructor() {
         this.clientKey = localStorage.getItem('_client_key') as string
         this.userApiKey = localStorage.getItem('_api_key') as string
+        this.otpToken = localStorage.getItem('_otp_token') as string
+        this.otpState = localStorage.getItem('_otp_state') as string
         this.userPayload = localStorage.getItem('_usr_data') !== null ? JSON.parse(localStorage.getItem('_usr_data')) : {} as string
     }
 
@@ -23,6 +27,25 @@ class ApiService {
     setUserApiKey(apiKey: string): void {
         this.userApiKey = apiKey
         localStorage.setItem('_api_key', apiKey)
+    }
+
+    setOtpToken(otpToken: string): void {
+        this.otpToken = otpToken
+        localStorage.setItem('_otp_token', otpToken)
+    }
+
+    setOtpState(otpState: string): void {
+        this.otpState = otpState
+        localStorage.setItem('_otp_state', otpState)
+    }
+
+    getOtpState(): string {
+        return this.otpState
+    }
+
+    getOtpToken(): string {
+        //localStorage.getItem('_otp_token')
+        return this.otpToken
     }
 
     setClientKey(clientKey: string): void {
@@ -62,6 +85,8 @@ class ApiService {
             axios.post(`${process.env.PULSE_REST_API_URL}/rest/login`, { username, password }, { headers })
                 .then((response: any) => {
                     this.setUserApiKey(response.data.api_key)
+                    this.setOtpToken(response.data.otp_token)
+                    this.setOtpState('new')
                     this.setUserPayload({
                         id: response.data.id,
                         title: response.data.title,

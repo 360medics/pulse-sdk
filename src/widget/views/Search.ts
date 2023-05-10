@@ -27,5 +27,24 @@ export function SearchView() {
                 this.error = e.toString()
             }
         },
+        otpRedirectClick() {
+            Api.setOtpState('used')
+        },
+        otpRedirectUrl(label: string) {
+            const otpState = Api.getOtpState()
+            const otpToken = Api.getOtpToken()
+
+            console.log(otpState, otpToken)
+
+            let url: string
+
+            if (otpState === 'used') {
+                url = `${process.env.PULSE_FRONT_URL}/results?query=${label}#all`
+            } else {
+                url = `${process.env.PULSE_FRONT_URL}/otp/login?otpToken=${otpToken}&redirect=${encodeURIComponent('https://app.pulselife.dev.360medics.tech/results?query='+label+'#all')}`
+            }
+
+            return url
+        }
     }
 }
