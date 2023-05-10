@@ -37,8 +37,6 @@ export function SearchView() {
             const otpState = Api.getOtpState()
             const otpToken = Api.getOtpToken()
 
-            console.log(otpState, otpToken)
-
             let url: string
 
             if (otpState === 'used') {
