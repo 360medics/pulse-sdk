@@ -2,9 +2,12 @@
 .env
 .env.dev
 .env.prod
-dist
 node_modules
+
 demo/demo-dist/*
 !demo/demo-dist/index.dist.html
 scripts/*
 !scripts/update-demo.dist.sh
+
+dist/*
+!dist/bundle-v0.1.js
