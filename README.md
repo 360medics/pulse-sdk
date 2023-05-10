@@ -1,11 +1,15 @@
 # pulse-sdk
 
-On going POC for a PulseLife search SDK
+PulseLife SDK version 0.1.
+
+*Features*
+
+- Search bar
+- OTP login (search opens in a new tab)
 
 ## Integration
 
 Copy paste the following code in your HTML head section
-
 
 ```
 <!DOCTYPE html>
@@ -27,7 +31,14 @@ Copy paste the following code in your HTML head section
 </html>
 ```
 
+*Note*: Ask for a client key to your commercial or technical contact in PulseLife organization.
+
 ## Tech
 
 - Webpack & petite-vue
 - Main resource: https://sdk-design.js.org/
+
+## Demo
+
+[[Duck Duck Go](https://sdk.360medics.com)](https://sdk.360medics.com)
+ 
